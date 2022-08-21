@@ -1,15 +1,14 @@
 // > css 
 import styled from 'styled-components';
 
-// > image 
-import hyeonju from '../../assets/profile.jpg';
+import hyeonju from '../assets/profile.png';
 
-const Info = () => {
+function Info(){
     return(
         <>
             <Profile>
                 <ImgWrapper>
-                    <img src={ hyeonju } alt="김현주 프로필 사진" />
+                    <img src={hyeonju} alt="김현주 사진" />
                     {/* <figcaption>
                         <p>
                             김현주 <br />
@@ -27,6 +26,7 @@ const Info = () => {
         </>
     )
 }
+
 export default Info;
 
 const Profile = styled.div`
