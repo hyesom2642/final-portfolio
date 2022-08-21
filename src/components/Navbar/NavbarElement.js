@@ -96,6 +96,7 @@ const NavbarRightList = styled.ul`
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    color: inherit;
 
     li {
         cursor: pointer;
@@ -103,7 +104,7 @@ const NavbarRightList = styled.ul`
         font-weight: bold;
         margin-right: 20px;
         -webkit-text-stroke-color: #fff;
-        -webkit-text-stroke-width: 0.02px;
+        -webkit-text-stroke-width: 0.5px;
         -webkit-text-fill-color: transparent;
         -webkit-background-clip: text;
         background-repeat: no-repeat;
