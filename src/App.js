@@ -1,25 +1,62 @@
-import logo from './logo.svg';
+// > css 
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// > components 
+import Navbar from './components/Navbar/Navbar';
+import Home from './pages/Home/Home';
+import About from './pages/About';
+import Project from './pages/Project';
+import Etc from './components/Etc/Etc';
+import Loading from './components/Loading/Loading';
 
+// > theme 
+import { ThemeProvider } from "styled-components";
+import theme from './theme/theme';
+
+// > 
+import { useState, useEffect } from 'react';
+
+function App() {
+  const [loading, setLoading] = useState(true);
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  const toggleNav = () => {
+    setToggleMenu(!toggleMenu);
+  }
+
+  useEffect( () => {
+    const changeWidth = () => {
+      setScreenWidth(window.innerWidth);
+    }
+    window.addEventListener('resize', changeWidth);
+    setLoading(false);
+
+    return () => {
+      window.removeEventListener('resize', changeWidth);
+    }
+  }, [])
+
+  return (
+    <>
+    {
+      loading === true
+      ? <Loading />
+      : <ThemeProvider theme={theme}>
+          <Navbar toggleMenu={toggleMenu} screenWidth={screenWidth} toggleNav={toggleNav} />
+          {
+            toggleMenu === false
+            ? <>
+              <Home />
+              <About />
+              <Project />
+              <Etc />
+            </>
+            : null
+          }
+        </ThemeProvider>
+    }
+    </>
+  )
+}
 export default App;
